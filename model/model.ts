@@ -4,30 +4,13 @@
 // Para acceder a una propiedad del objeto uso el punto
 
 import { readFileSync } from "node:fs";
+import { ApiData, Character } from "../interfaces/interfaces";
 
-const PATH = "./database/data.json";
 
-interface ApiData {
-    info: any,
-    results: any
+const getAll = ():ApiData => {
+    const PATH = "./database/data.json";
+    return JSON.parse(readFileSync(PATH).toString())
 }
-
-interface Character {
-    id: number;
-    name: string;
-    status: string;
-    species: string;
-    type: string;
-    gender: string;
-    origin: any;
-    location: any;
-    image: string;
-    episode: string[];
-    url: string;
-    created: string
-}
-
-const getAll = ():ApiData => JSON.parse(readFileSync(PATH).toString())
 
 const getCharacterById = (id: number):string => {
     const data = getAll()
